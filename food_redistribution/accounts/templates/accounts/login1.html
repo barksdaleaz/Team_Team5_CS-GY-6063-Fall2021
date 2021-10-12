@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Login</title>
+
+	<style>
+
+    body {
+      background-color: #333333;
+      font-family: 'Open Sans', Helvetica;
+    }
+
+    form{
+      text-align: center;
+    }
+
+    label{
+      display: block;
+      letter-spacing: 4px;
+      padding-top: 30px;
+      text-align: center;
+    }
+
+    .label-text{
+      color: #9B9B9B;
+      cursor: text;
+      font-size: 20px;
+      line-height: 20px;
+      text-transform: uppercase;
+      transform: translateY(-34px));
+      transition: all 0.3s;
+    }
+    input{
+      background-color: transparent;
+      border: 0;
+      border-bottom: 2px solid #4A4A4A;
+      color: white;
+      font-size: 36px;
+      letter-spacing: -1px;
+      outline: 0;
+      padding: 5px 20px;
+      text-align: center;
+      transition: all 0.3s;
+      width: 200px;
+    }
+    input:focus {
+        max-width: 100%;
+        width: 400px;
+    }
+    .label-text{
+          color: #F0F0F0;
+          font-size: 13px;
+          transform: translateY(-74px));
+    }
+    .label-text:valid{
+        font-size: 13px;
+        transform: translateY(-74px));
+    }
+    p{
+      color: #F0F0F0;
+      font-size: 13px;
+    }
+    a{
+      color: #F0F0F0;
+      font-size: 13px;
+      font-weight: bold;
+    }
+    button{
+      background-color: #333333;
+      border: 2px solid white;
+      border-radius: 27px;
+      color: white;
+      cursor: pointer;
+      font-size: 20px;
+      margin-top: 20px;
+      padding: 15px 30px;
+      text-transform: uppercase;
+      transition: all 200ms;
+    }
+    button:hover, button:focus{
+      background-color: white;
+      color: #333333;
+      outline: 0;
+    }
+
+	</style>
+
+</head>
+<body>
+  <form method="POST" action="">
+    {% csrf_token %}
+  <label>
+    <input type="text" name="username" required />
+    <div class="label-text">username</div>
+  </label>
+  <label>
+    <input type="password" name="password" required />
+    <div class="label-text">password</div>
+  </label>
+  <button type="submit" value="Sign In">sign in</button>
+  <!--<button>Log In</button>-->
+</form>
+{% for message in messages %}
+  <label id="messages">
+    <p>{{message}}</p>
+  </label>
+{% endfor %}
+
+<div>
+  <label>
+    <p>Don't have an account? <a href="{% url 'register' %}">Sign Up</a></p>
+  </label>
+</body>
+
+</html>
