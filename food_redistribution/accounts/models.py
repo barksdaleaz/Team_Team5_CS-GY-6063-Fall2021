@@ -6,7 +6,7 @@ from django.urls import reverse
 
 
 class FoodRedistributor(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, default="")
     name_of_food_redis = models.CharField(max_length=200)
     email = models.CharField(max_length=200, unique=True)
@@ -19,7 +19,7 @@ class FoodRedistributor(models.Model):
 
 
 class Restaurant(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, default="")
     name_of_restaurant = models.CharField(max_length=200)
     email = models.CharField(max_length=200, unique=True)
@@ -33,11 +33,11 @@ class Restaurant(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
-    author = models.ForeignKey(User,on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
 
     def __str__(self):
-        return self.title+'|'+str(self.author)
+        return self.title + "|" + str(self.author)
 
     def get_absolute_url(self):
-        return reverse('blog-details',args=(str(self.id)))
+        return reverse("blog-details", args=(str(self.id)))
