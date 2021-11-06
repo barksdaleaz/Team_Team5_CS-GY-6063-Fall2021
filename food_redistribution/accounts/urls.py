@@ -1,5 +1,7 @@
 from django.urls import path, include
 from . import views
+
+# from . import
 from .views import (
     PostView,
     DetailedblogView,
@@ -16,6 +18,8 @@ urlpatterns = [
     path("restaurant/", views.register_restaurant, name="register"),
     path("profile/", views.profile, name="profile"),
     path("foodredis/", views.register_foodredistributor, name="register2"),
+    path("login/", views.choose_login, name="chooselogin"),
+    path("about/", views.about, name="about"),
     path("restuarantlogin/", views.login_restuarant, name="login"),
     path("foodredislogin/", views.login_foodredistributor, name="login2"),
     path("restuarantlogout/", views.logout_restuarant, name="logout"),
@@ -48,14 +52,16 @@ urlpatterns = [
         ),
         name="password_reset_complete",
     ),
-    path("", views.home, name="home"),
-    path("", views.home2, name="home2"),
+    path("profile/", views.home, name="home"),
+    path("profile/", views.home2, name="home2"),
     path("calendar/", include(("cal.urls", "cal"), namespace="calendar")),
+    path("base/", include(("yelp_search.urls", "yelp_search"), namespace="yelpsearch")),
     path("blogposts/", PostView.as_view(), name="posts"),
     path("blogposts/<int:pk>", DetailedblogView.as_view(), name="blog-details"),
     path("addpost/", AddPostView.as_view(), name="add-post"),
     path("blogposts/edit/<int:pk>", UpdatePostView.as_view(), name="update_post"),
     path("blogposts/<int:pk>/remove", DeletePostView.as_view(), name="delete_post"),
+    path("", views.landing, name="landing"),
     url(
         r"^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,6}-[0-9A-Za-z]{1,32})/$",
         views.activate,
